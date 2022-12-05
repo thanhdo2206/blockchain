@@ -40,6 +40,7 @@ const login = async (req, res) => {
     res.status(201).send({
       message: "Login successfully",
       accessToken,
+      content: payload
     });
   } catch (error) {
     res.status(500).send(error.message);

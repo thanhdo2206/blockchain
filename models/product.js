@@ -15,14 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Agency, { foreignKey: "agency_id" });
 
       // mối quan hệ 1-N với User
-      this.belongsTo(User, { foreignKey: "employee_id",as:"employee" });
+      this.belongsTo(User, { foreignKey: "employee_id", as: "employee" });
     }
   }
   Product.init(
     {
       code: DataTypes.STRING,
       name_product: DataTypes.STRING,
-      image: DataTypes.STRING,
       price: DataTypes.FLOAT,
       description: DataTypes.STRING,
       number: DataTypes.INTEGER,

@@ -5,8 +5,12 @@ const getAllPoduct = async (req, res) => {
     const listProduct = await Product.findAll({
       include: [
         { model: Agency, attributes: ["agency_name", "address"] },
-        { model: User, as: "employee", attributes: ["user_name", "avatar","phone_number","email"] },
-        { model: Category,attributes: ["category_name"]},
+        {
+          model: User,
+          as: "employee",
+          attributes: ["user_name", "avatar", "phone_number", "email"],
+        },
+        { model: Category, attributes: ["category_name"] },
       ],
     });
     res.status(200).send(listProduct);
@@ -22,8 +26,12 @@ const getDetailPoduct = async (req, res) => {
       where: { id },
       include: [
         { model: Agency, attributes: ["agency_name", "address"] },
-        { model: User, as: "employee", attributes: ["user_name", "avatar","phone_number","email"] },
-        { model: Category,attributes: ["category_name"]},
+        {
+          model: User,
+          as: "employee",
+          attributes: ["user_name", "avatar", "phone_number", "email"],
+        },
+        { model: Category, attributes: ["category_name"] },
       ],
     });
     res.status(200).send(product);
@@ -33,16 +41,9 @@ const getDetailPoduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  const { file } = req;
-
-  const dataContent = JSON.parse(req.body.data);
-
-  const urlImage = `https://blockchain-api-ab1c.onrender.com/${file.path}`;
-
   try {
     const newProduct = await Product.create({
-      ...dataContent,
-      image: urlImage,
+      ...req.body,
     });
     res.status(201).send(newProduct);
   } catch (error) {
@@ -63,23 +64,11 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { file } = req;
-
-  const urlImage = file ? `https://blockchain-api-ab1c.onrender.com/${file.path}` : "";
-
-  const dataContent = JSON.parse(req.body.data);
-
-  const productEdit = urlImage
-    ? {
-        ...dataContent,
-        image: urlImage,
-      }
-    : dataContent;
 
   try {
     await Product.update(
       {
-        ...productEdit,
+        ...req.body,
       },
       {
         where: { id },

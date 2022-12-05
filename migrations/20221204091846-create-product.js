@@ -15,20 +15,15 @@ module.exports = {
       name_product: {
         type: Sequelize.STRING,
       },
-      image: {
-        type: Sequelize.STRING,
-      },
       price: {
         type: Sequelize.FLOAT,
       },
       description: {
         type: Sequelize.STRING,
         allowNull: true,
-
       },
-      number:{
+      number: {
         type: Sequelize.INTEGER,
-
       },
       category_id: {
         type: Sequelize.INTEGER,

@@ -11,8 +11,8 @@ const productRouter = express.Router();
 
 productRouter.get("/", getAllPoduct);
 productRouter.get("/:id",getDetailPoduct );
-productRouter.post("/",authenticate,uploadImage("imgProduct"),createProduct );
-productRouter.put("/:id",authenticate,uploadImage("imgProduct"),updateProduct);
+productRouter.post("/",authenticate,createProduct );
+productRouter.put("/:id",authenticate,updateProduct);
 
 
 module.exports = productRouter;

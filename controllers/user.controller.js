@@ -49,10 +49,10 @@ const login = async (req, res) => {
 const uploadAvatar = async (req, res) => {
   const { user, file } = req;
   
-  const urlImage = `http://localhost:8000/${file.path}`;
+  // const urlImage = `http://localhost:8000/${file.path}`;
   
 
-  // const urlImage = `https://blockchain.onrender.com/${file.path}`;
+  const urlImage = `https://blockchain-api-ab1c.onrender.com/${file.path}`;
 
   const userFind = await User.findOne({
     where: { id: user.id },

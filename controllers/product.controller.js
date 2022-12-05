@@ -37,7 +37,7 @@ const createProduct = async (req, res) => {
 
   const dataContent = JSON.parse(req.body.data);
 
-  const urlImage = `http://localhost:8000/${file.path}`;
+  const urlImage = `https://blockchain-api-ab1c.onrender.com/${file.path}`;
 
   try {
     const newProduct = await Product.create({
@@ -65,7 +65,7 @@ const updateProduct = async (req, res) => {
   const { id } = req.params;
   const { file } = req;
 
-  const urlImage = file ? `http://localhost:8000/${file.path}` : "";
+  const urlImage = file ? `https://blockchain-api-ab1c.onrender.com/${file.path}` : "";
 
   const dataContent = JSON.parse(req.body.data);
 

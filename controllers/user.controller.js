@@ -69,11 +69,11 @@ const uploadAvatar = async (req, res) => {
 
 const editProfile = async (req, res) => {
   const { id } = req.params;
-  const { user_name, email, phone_number, address } = req.body;
+  // const { user_name, email, phone_number, address } = req.body;
 
   try {
     await User.update(
-      { user_name, email, phone_number, address },
+      { ...req.body },
       {
         where: { id },
       }

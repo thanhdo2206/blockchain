@@ -26,11 +26,12 @@ const register = async (req, res ) => {
 
 const login = async (req, res) => {
   try {
-    const { id, user_name, email, type } = req.user;
+    const { id, user_name, email, type,avatar } = req.user;
     const payload = {
       id,
       user_name,
       email,
+      avatar,
       type,
     };
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
@@ -92,7 +93,19 @@ const getAllUser = async (req, res) => {
     const listUser = await User.findAll()
     res.status(201).send(listUser)
   } catch (error) {
-    console.log(error.message);
+    res.status(500).send(error.message);
   }
 }
-module.exports = { register, login, uploadAvatar, editProfile,getAllUser };
+
+const getInforUser = async (req, res) => {
+  const {id} = req.params
+  try {
+    const user = await User.findOne({where: { id }});
+    
+    res.status(201).send(user)
+  } catch (error) {
+    res.status(500).send(error.message);
+    
+  }
+}
+module.exports = { register, login, uploadAvatar, editProfile,getAllUser,getInforUser };

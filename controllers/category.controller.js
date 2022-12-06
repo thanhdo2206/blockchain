@@ -9,7 +9,6 @@ const getAllCategories = async (req, res) => {
   }
 };
 
-
 const createCategory = async (req, res) => {
   const { category_name } = req.body;
   try {
@@ -21,14 +20,40 @@ const createCategory = async (req, res) => {
 };
 
 const deleteCategory = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const categoryDelete = await Category.destroy({ where: { id } });
-  
-      res.status(200).send("Delete category successfully");
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  };
+  try {
+    const { id } = req.params;
+    const categoryDelete = await Category.destroy({ where: { id } });
 
-module.exports = { getAllCategories, createCategory, deleteCategory };
+    res.status(200).send("Delete category successfully");
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const editCategory = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Category.update(
+      {
+        ...req.body,
+      },
+      {
+        where: { id },
+      }
+    );
+    const categoryUpdated = await Category.findOne({ where: { id } });
+    res.status(200).send(categoryUpdated);
+
+    // res.status(201).send("ok");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+module.exports = {
+  getAllCategories,
+  createCategory,
+  deleteCategory,
+  editCategory,
+};

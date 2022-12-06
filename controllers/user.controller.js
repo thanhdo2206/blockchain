@@ -7,13 +7,14 @@ const { User, sequelize } = require("../models/index");
 dotenv.config();
 
 const register = async (req, res ) => {
-  const { password, email } = req.body;
+  const { password, email ,user_name} = req.body;
   try {
     //mã hóa pass
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
+    // gravatar.url(email);
 
-    const avatarUrl = gravatar.url(email);
+    const avatarUrl = `https://avatars.dicebear.com/api/micah/${user_name}.svg`
     const data = { ...req.body, avatar: avatarUrl, password: hashPassword };
 
     const newUser = await User.create(data);

@@ -10,7 +10,7 @@ const { uploadImage } = require("../middlewares/upload/uploadImg");
 const userRouter = express.Router();
 
 userRouter.get("/",getAllUser);
-userRouter.get("/:id",authenticate,getInforUser);
+userRouter.get("/get_info",authenticate,getInforUser);
 
 userRouter.post("/register",checkSameUserName, register);
 userRouter.post("/login", checkExistByUserName, checkPassword, login);

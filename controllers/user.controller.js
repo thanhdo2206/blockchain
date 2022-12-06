@@ -98,7 +98,7 @@ const getAllUser = async (req, res) => {
 }
 
 const getInforUser = async (req, res) => {
-  const {id} = req.params
+  const {id} = req.user;
   try {
     const user = await User.findOne({where: { id }});
     

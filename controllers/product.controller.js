@@ -88,4 +88,5 @@ module.exports = {
   getDetailPoduct,
   createProduct,
   updateProduct,
+  deleteProduct
 };

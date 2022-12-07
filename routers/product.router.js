@@ -13,6 +13,8 @@ productRouter.get("/", getAllPoduct);
 productRouter.get("/:id",getDetailPoduct );
 productRouter.post("/",authenticate,createProduct );
 productRouter.put("/:id",authenticate,updateProduct);
+productRouter.delete("/:id",authenticate,deleteProduct);
+
 
 
 module.exports = productRouter;
